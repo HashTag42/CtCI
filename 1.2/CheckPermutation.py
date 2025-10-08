@@ -5,6 +5,21 @@ Cracking the Coding Interview - Problem 1.2
 
 
 def CheckPermutation(s1: str, s2: str) -> bool:
+    """
+    Checks if one string is a permutation of another.
+
+    Args:
+        s1 (str) : The first string to check.
+        s1 (str) : The second string to check against.
+
+    Returns:
+        bool : True if one string is a permutation of the other. False otherwise.
+
+    Description:
+        Uses two dictionaries to track character instances and then compares those dictionaries.
+        Time complexity: O(N)
+        Space complexity: O(N)
+    """
     if len(s1) != len(s2):
         return False
     s1dict, s2dict = {}, {}
