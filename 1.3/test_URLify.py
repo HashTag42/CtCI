@@ -1,9 +1,16 @@
 from URLify import URLify
+import pytest
 
 
-def test_URLify_1():
-    assert URLify("Mr John Smith      ", 13) == "Mr%20John%20Smith"
+@pytest.fixture(params=[
+    ("", 0, ""),
+    ("Mr John Smith      ", 13, "Mr%20John%20Smith"),
+])
+def test_case(request):
+    return request.param
 
 
-def test_URLify_2():
-    assert URLify("", 0) == ""
+def test_URLify(test_case):
+    string, true_length, expected = test_case
+    actual = URLify(string, true_length)
+    assert actual == expected
