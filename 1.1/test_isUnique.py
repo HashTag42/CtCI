@@ -1,4 +1,4 @@
-from IsUnique import IsUnique
+from IsUnique2 import IsUnique
 
 
 def test_case_1():
