@@ -21,6 +21,10 @@ def test_CheckPermutation1_5():
     assert CheckPermutation1("", "") is True
 
 
+def test_CheckPermutation1_6_different_lengths():
+    assert CheckPermutation1("abba", "abcba") is False
+
+
 def test_CheckPermutation2_1():
     assert CheckPermutation2("abc", "cba") is True
 
@@ -39,3 +43,7 @@ def test_CheckPermutation2_4():
 
 def test_CheckPermutation2_5():
     assert CheckPermutation2("", "") is True
+
+
+def test_CheckPermutation2_6_different_lengths():
+    assert CheckPermutation2("abba", "abcba") is False
