@@ -1,49 +1,26 @@
 from CheckPermutation import CheckPermutation1, CheckPermutation2
+import pytest
 
 
-def test_CheckPermutation1_1():
-    assert CheckPermutation1("abc", "cba") is True
+@pytest.fixture(params=[
+    ("", "", True),
+    ("abc", "cba", True),
+    ("apple", "papel", True),
+    ("carrot", "tarroc", True),
+    ("aaa", "bbb", False),
+    ("abba", "abcba", False),
+])
+def test_case(request):
+    return request.param
 
 
-def test_CheckPermutation1_2():
-    assert CheckPermutation1("aaa", "bbb") is False
+def test_CheckPermutation1(test_case):
+    string1, string2, expected = test_case
+    actual = CheckPermutation1(string1, string2)
+    assert actual == expected
 
 
-def test_CheckPermutation1_3():
-    assert CheckPermutation1("apple", "papel") is True
-
-
-def test_CheckPermutation1_4():
-    assert CheckPermutation1("carrot", "tarroc") is True
-
-
-def test_CheckPermutation1_5():
-    assert CheckPermutation1("", "") is True
-
-
-def test_CheckPermutation1_6_different_lengths():
-    assert CheckPermutation1("abba", "abcba") is False
-
-
-def test_CheckPermutation2_1():
-    assert CheckPermutation2("abc", "cba") is True
-
-
-def test_CheckPermutation2_2():
-    assert CheckPermutation2("aaa", "bbb") is False
-
-
-def test_CheckPermutation2_3():
-    assert CheckPermutation2("apple", "papel") is True
-
-
-def test_CheckPermutation2_4():
-    assert CheckPermutation2("carrot", "tarroc") is True
-
-
-def test_CheckPermutation2_5():
-    assert CheckPermutation2("", "") is True
-
-
-def test_CheckPermutation2_6_different_lengths():
-    assert CheckPermutation2("abba", "abcba") is False
+def test_CheckPermutation2(test_case):
+    string1, string2, expected = test_case
+    actual = CheckPermutation2(string1, string2)
+    assert actual == expected
