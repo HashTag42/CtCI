@@ -43,3 +43,11 @@ def test_IsPalindromePermutation_10():
 
 def test_IsPalindromePermutation_11():
     assert IsPalindromePermutation("So patient a nurse to nurse a patient so") is False
+
+
+def test_IsPalindromePermutation_12():
+    assert IsPalindromePermutation("a") is True
+
+
+def test_IsPalindromePermutation_13():
+    assert IsPalindromePermutation("☺️👍🏽👍🏽⚾⚾") is True

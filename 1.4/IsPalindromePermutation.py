@@ -11,6 +11,9 @@ Cracking the Coding Interview - Question 1.4
 '''
 
 
+from collections import Counter
+
+
 def IsPalindromePermutation(string: str) -> bool:
     """
     Checks if the given string is a permutation of a palindrome.
@@ -25,23 +28,16 @@ def IsPalindromePermutation(string: str) -> bool:
         Only letters are considered for the check.
         The check is case insensitive.
         Digits, punctuation, and whitespace are ignored.
-    """
-    # Count the number of instances of each character in the string. Ignore spaces.
-    character_dict = {}
-    for c in string:
-        cl = c.lower()
-        if cl.isalpha():
-            if cl in character_dict:
-                character_dict[cl] += 1
-            else:
-                character_dict[cl] = 1
 
-    # Only one character is allowed to have an odd number of instances.
-    has_odd = False
-    for i in character_dict:
-        if character_dict[i] % 2 != 0:
-            if has_odd:
-                return False
-            else:
-                has_odd = True
-    return True
+        Time complexity: O(n)
+        Space complexity: O(n)
+    """
+    # Count the number of instances of each character in the string
+    filtered = [char.lower() for char in string if char.isalpha()]
+    char_counts = Counter(filtered)
+
+    # Count how many characters have an odd number of instances in the string
+    odd_count = sum(1 for count in char_counts.values() if count % 2 != 0)
+
+    # Only one character can have an odd number of instances
+    return odd_count <= 1
