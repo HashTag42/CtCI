@@ -36,7 +36,6 @@ def IsPalindromePermutation(string: str) -> bool:
             else:
                 character_dict[cl] = 1
 
-    # Check if the number of instances of each character is an even number.
     # Only one character is allowed to have an odd number of instances.
     has_odd = False
     for i in character_dict:
