@@ -62,10 +62,14 @@ def CheckRemoval(string1: str, string2: str) -> bool:
 
     for i in range(min_len):
         if string1[i] != string2[i]:
-            print("[DEBUG] 10")
-            return string1[i+1:] == string2[i:]
+            if string1[i+1:] == string2[i:]:
+                print("[DEBUG] 10")
+                return True
+            else:
+                print("[DEBUG] 11")
+                return False
         else:
-            print("[DEBUG] 11")
+            print("[DEBUG] 12")
 
-    print("[DEBUG] 12")
+    print("[DEBUG] 13")
     return True

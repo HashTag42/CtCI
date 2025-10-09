@@ -5,6 +5,8 @@ import pytest
 @pytest.fixture(params=[
     # returns True
     ("", "", True),             # Identical empty strings
+    ("a", "", True),            # 1 edit, 1 removal, with an empty string
+    ("", "a", True),            # 1 edit, 1 insertion, with an empty string
     ("pale", "pale", True),     # Identical strings
     ("pale", "ale", True),      # 1 edit, 1 removal, 1st character
     ("pale", "ple", True),      # 1 edit, 1 removal, 2nd character
@@ -25,7 +27,11 @@ import pytest
     ("pale", "bae", False),     # Should return False - requires a replacement and a removal
     ("apple", "axle", False),   # Should return False - requires a replacement and a removal
     ("abc", "xc", False),       # should return False (not one removal away)
-    ("hello", "hxlo", False)    # should return False (not one removal away)
+    ("hello", "hxlo", False),   # should return False (not one removal away)
+    ("abcd", "axcde", False),   # mismatch at index 1, but skipping doesn't align
+    ("axcde", "abcd", False),   # mismatch at index 1, but skipping doesn't align])
+    ("abcde", "abcf", False),   # Mismatch at last position, remaining parts don't match
+    ("ab", "axy", False)        # Insertion case, mismatch at index 1, substrings unequal
 ])
 def test_case(request: pytest.FixtureRequest):
     return request.param
