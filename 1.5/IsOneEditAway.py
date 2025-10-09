@@ -1,16 +1,18 @@
 '''
-    Cracking the Coding Interview - Question 1.5
-    One Away: There are three types of edits that can be performed on strings: insert a character,
-    remove a character, or replace a character. Give two strings, write a function to check if they
-    are one edit (or zero edits) away.
-    EXAMPLE
-    pale, ple   -> True
-    pales, pale -> True
-    pale, bale  -> True
-    pale, bake  -> False
+Cracking the Coding Interview - Question 1.5
+One Away: There are three types of edits that can be performed on strings: insert a character,
+remove a character, or replace a character. Give two strings, write a function to check if they
+are one edit (or zero edits) away.
 
-    ISSUES:
-        Current branch coverage is 19/20. Added "[DEBUG]" statements to help identify which branches are being covered.
+EXAMPLES
+pale, ple   -> True
+pales, pale -> True
+pale, bale  -> True
+pale, bake  -> False
+
+ISSUES:
+    [1](https://github.com/HashTag42/CtCI/issues/1) Current branch coverage is 19/20.
+        Added "[DEBUG]" statements to help identify which branches are being covered.
 '''
 
 
@@ -61,7 +63,7 @@ def CheckRemoval(string1: str, string2: str) -> bool:
     for i in range(min_len):
         if string1[i] != string2[i]:
             print("[DEBUG] 10")
-            break
+            return string1[i+1:] == string2[i:]
         else:
             print("[DEBUG] 11")
 

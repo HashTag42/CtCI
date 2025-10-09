@@ -22,6 +22,10 @@ import pytest
     ("aa", "aaaa", False),      # String lengths diff = 2, 1st string is shorter
     ("aaaa", "aa", False),      # String lengths diff = 2, 2nd string is shorter
     ("", "aaa", False),         # String length diff > 2
+    ("pale", "bae", False),     # Should return False - requires a replacement and a removal
+    ("apple", "axle", False),   # Should return False - requires a replacement and a removal
+    ("abc", "xc", False),       # should return False (not one removal away)
+    ("hello", "hxlo", False)    # should return False (not one removal away)
 ])
 def test_case(request: pytest.FixtureRequest):
     return request.param
