@@ -14,7 +14,7 @@ Cracking the Coding Interview - Question 1.4
 from collections import Counter
 
 
-def IsPalindromePermutation(string: str) -> bool:
+def IsPalindromePermutation1(string: str) -> bool:
     """
     Checks if the given string is a permutation of a palindrome.
 
@@ -41,3 +41,9 @@ def IsPalindromePermutation(string: str) -> bool:
 
     # Only one character can have an odd number of instances
     return odd_count <= 1
+
+
+
+def IsPalindromePermutation2(string: str) -> bool:
+    """
+    """
