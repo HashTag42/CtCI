@@ -1,18 +1,14 @@
 '''
-Cracking the Coding Interview - Question 1.5
-One Away: There are three types of edits that can be performed on strings: insert a character,
-remove a character, or replace a character. Give two strings, write a function to check if they
-are one edit (or zero edits) away.
+Cracking the Coding Interview, 6th edition
+Question 1.6: One Away
+There are three types of edits that can be performed on strings: insert a character, remove a character,
+or replace a character. Give two strings, write a function to check if they are one edit (or zero edits) away.
 
 EXAMPLES
 pale, ple   -> True
 pales, pale -> True
 pale, bale  -> True
 pale, bake  -> False
-
-ISSUES:
-    [1](https://github.com/HashTag42/CtCI/issues/1) Current branch coverage is 19/20.
-        Added "[DEBUG]" statements to help identify which branches are being covered.
 '''
 
 
@@ -26,16 +22,19 @@ def IsOneEditAway(string1: str, string2: str) -> bool:
         print("[DEBUG] 2")
         return False
 
-    if len(string1) == len(string2):    # Potential replacement
+    if len(string1) == len(string2):
+        # Potential replacement
         print("[DEBUG] 3")
         return CheckReplacement(string1, string2)
 
-    if len(string1) - len(string2) == 1:   # Potential removal
+    if len(string1) - len(string2) == 1:
+        # Potential removal
         print("[DEBUG] 4")
         return CheckRemoval(string1, string2)
 
-    if len(string1) - len(string2) == -1:   # Potential insertion
-        # An insertion is a reversed removal, so we pass the strings in reversed order
+    if len(string1) - len(string2) == -1:   # pragma: no branch
+        # Potential insertion
+        # An insertion is a reversed removal, so we pass the strings to CheckRemoval in reversed order
         print("[DEBUG] 5")
         return CheckRemoval(string2, string1)
 
