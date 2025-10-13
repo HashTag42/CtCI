@@ -8,20 +8,21 @@ ASSUMPTION:
 - The image is rotated in a clockwise direction.
 '''
 
-from typing import List
+from typing import List, TypeVar
 from rotate_point import rotate_point
+T = TypeVar("T")
 
 
-def rotate_matrix(matrix: List[List[int]]) -> List[List[int]]:
+def rotate_matrix(matrix: List[List[T]]) -> List[List[T]]:
     """
     Rotates a matrix 90 degrees in a clockwise direction.
-    This supports
+    This supports matrices of any dimensions.
 
     Args:
-        matrix (List[List[int]]): The matrix to be rotated.
+        matrix (List[List[T]]): The matrix to be rotated.
 
     Returns:
-        List[List[int]]: The rotated matrix.
+        List[List[T]]: The rotated matrix.
     """
     if not matrix or not matrix[0]:
         return []
@@ -29,7 +30,7 @@ def rotate_matrix(matrix: List[List[int]]) -> List[List[int]]:
     rows = len(matrix)
     cols = len(matrix[0])
 
-    rotated_matrix = [[0 for _ in range(rows)] for _ in range(cols)]
+    rotated_matrix = [[None for _ in range(rows)] for _ in range(cols)]
 
     for row in range(rows):
         for col in range(cols):
