@@ -45,10 +45,7 @@ def test_rotate_matrix_inplace(test_case):
       [4,  5,  6],
       [7,  8,  9],
       [10, 11, 12],
-      [13, 14, 15]],
-     [[13, 10,  7,  4,  1],
-      [14, 11,  8,  5,  2],
-      [15, 12,  9,  6,  3]]),
+      [13, 14, 15]]),
 ])
 def test_ValueError(request: pytest.FixtureRequest):
     return request.param
@@ -56,5 +53,5 @@ def test_ValueError(request: pytest.FixtureRequest):
 
 def test_rotate_matrix_inplace_ValueError(test_ValueError):
     with pytest.raises(ValueError):
-        matrix, expected = test_ValueError
+        matrix = test_ValueError
         rotate_matrix_inplace(matrix)
