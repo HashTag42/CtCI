@@ -20,18 +20,18 @@ def IsOneEditAway(string1: str, string2: str) -> bool:
     if abs(len(string1) - len(string2)) >= 2:
         return False
 
-    if len(string1) == len(string2):
-        # Potential replacement
-        return CheckReplacement(string1, string2)
-
     if len(string1) - len(string2) == 1:
         # Potential removal
         return CheckRemoval(string1, string2)
 
-    # len(string1) - len(string2) is -1:
-    # Potential insertion
-    # An insertion is a reversed removal, so we pass the strings to CheckRemoval in reversed order
-    return CheckRemoval(string2, string1)
+    if len(string1) - len(string2) == -1:
+        # Potential insertion
+        # An insertion is a reversed removal, so we pass the strings to CheckRemoval in reversed order
+        return CheckRemoval(string2, string1)
+
+    # len(string1) is == len(string2)
+    # Potential replacement
+    return CheckReplacement(string1, string2)
 
 
 def CheckReplacement(string1: str, string2: str) -> bool:
