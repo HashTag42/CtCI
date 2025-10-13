@@ -23,6 +23,9 @@ def rotate_point(width: int, height: int, col: int, row: int) -> Tuple[int, int]
     """
     # TODO: Extend this function to also work in an anti-clockwise direction
 
+    if width < 0 or height < 0 or col < 0 or row < 0:
+        raise ValueError("Invalid argument(s). All arguments must be greater than zero.")
+
     if col >= width or row >= height:
         raise ValueError(
             f"Invalid coordinates: col={col}, row={row} exceed matrix bounds (width={width}, height={height})"

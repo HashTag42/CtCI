@@ -70,6 +70,10 @@ def test_rotate_point(test_case):
 @pytest.fixture(params=[
     (3, 3, 3, 0),
     (3, 3, 0, 3),
+    (-1, 0, 0, 0),
+    (0, -1, 0, 0),
+    (0, 0, -1, 0),
+    (0, 0, 0, -1),
 ])
 def test_exception(request: pytest.FixtureRequest):
     return request.param
