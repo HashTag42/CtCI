@@ -9,7 +9,7 @@ ASSUMPTION:
 '''
 
 from typing import List, NamedTuple
-from rotate_matrix import rotate_matrix
+from rotate_matrix_inplace import rotate_matrix_inplace
 
 
 class Pixel(NamedTuple):
@@ -29,4 +29,4 @@ def rotate_image(image: List[List[Pixel]]) -> List[List[Pixel]]:
     Returns:
         List[List[Pixel]]: Rotated image matrix.
     """
-    return rotate_matrix(image)
+    return rotate_matrix_inplace(image)
