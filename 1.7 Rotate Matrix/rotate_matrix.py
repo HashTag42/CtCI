@@ -1,13 +1,3 @@
-'''
-Cracking the Coding Interview, 6th edition
-Question 1.7: Rotate Matrix
-Given an image represented by an NxN matrix, where each pixel is 4 bytes,
-write a method to rotate the image by 90 degrees. Can you do this in place?
-
-ASSUMPTION:
-- The image is rotated in a clockwise direction.
-'''
-
 from typing import List, TypeVar
 from rotate_point import rotate_point
 T = TypeVar("T")
@@ -23,6 +13,10 @@ def rotate_matrix(matrix: List[List[T]]) -> List[List[T]]:
 
     Returns:
         List[List[T]]: The rotated matrix.
+
+    Analysis:
+        Time complexity: O(rows x cols)
+        Space complexity: O(rows x cols)
     """
     if not matrix or not matrix[0]:
         return []
