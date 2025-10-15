@@ -36,8 +36,7 @@ def remove_dups2(linked_list: List[int]) -> List[int]:
     current = ll.head
     while current:
         if current.data in seen:
-            # ll.delete(current.data)
-
+            ll.delete(current.data)
         else:
             seen.add(current.data)
         current = current.next
