@@ -1,3 +1,7 @@
+'''
+    The LinkedList class implements a singly linked list.
+'''
+
 from typing import List, Optional, TypeVar, Generic
 T = TypeVar("T")
 
@@ -9,21 +13,23 @@ class Node(Generic[T]):
 
 
 class LinkedList(Generic[T]):
-    def __init__(self) -> None:
-        """ Creates an empty LinkedList """
+    def __init__(self, nodes: Optional[List[T]] = None) -> None:
+        """ Creates a LinkedList, optionally initialized from a list of nodes """
         self.head = None
+        if nodes:
+            self.append_from_list(nodes)
 
     def append(self, data: T) -> None:
         """ Adds a node to the end of the list """
         new_node = Node(data)
-        if not self.head:
-            self.head = new_node
-            return
-        else:
+        if self.head:
             current = self.head
             while current.next:
                 current = current.next
             current.next = new_node
+        else:
+            self.head = new_node
+            return
 
     def append_from_list(self, lst: Optional[List[T]]) -> None:
         """ Appends nodes with values from a list """
