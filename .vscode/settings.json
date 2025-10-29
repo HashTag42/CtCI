@@ -1,7 +1,10 @@
 {
-    "python.testing.pytestArgs": [
-        "."
-    ],
-    "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+  "python.testing.pytestArgs": [
+    ".",  // or your test folder
+    "--cov=.",
+    "--cov-report=term-missing",
+    "--cov-config=.coveragerc"
+  ],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true
 }
