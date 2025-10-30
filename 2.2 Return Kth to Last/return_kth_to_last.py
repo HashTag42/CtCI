@@ -1,6 +1,6 @@
 '''
     Cracking the Coding Interview - 6th Edition
-    Question 2.1 - Return Kth to Last
+    Question 2.2 - Return Kth to Last
     Implement an algorithm to find the kth to last element of a single linked list.
 '''
 from LinkedList import LinkedList, Node
