@@ -7,6 +7,10 @@ from LinkedList import LinkedList
 
 
 def return_Kth_to_last(linked_list: LinkedList, Kth: int) -> int:
+    """
+    Time complexity: O(2*n) = O(n)
+    Space complexity: O(1)
+    """
     list_len = len(linked_list)
     if list_len == 0:
         raise ValueError("List must have at least 1 element")
