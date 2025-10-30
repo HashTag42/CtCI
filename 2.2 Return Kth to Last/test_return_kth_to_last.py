@@ -1,4 +1,4 @@
-from return_kth_to_last import return_Kth_to_last1, return_Kth_to_last2
+from return_kth_to_last import return_Kth_to_last1, return_Kth_to_last2, return_Kth_to_last3
 from LinkedList import LinkedList
 import pytest
 
@@ -46,3 +46,17 @@ def test_return_Kth_to_last2_negative_cases(list, Kth, expected):
     linked_list = LinkedList(list)
     with pytest.raises(expected):
         return_Kth_to_last2(linked_list.head, Kth)
+
+
+# return_Kth_to_last3
+@pytest.mark.parametrize("list, Kth, expected", positive_cases)
+def test_return_Kth_to_last3_positive_cases(list, Kth, expected):
+    linked_list = LinkedList(list)
+    assert return_Kth_to_last3(linked_list.head, Kth) == expected
+
+
+@pytest.mark.parametrize("list, Kth, expected", negative_cases)
+def test_return_Kth_to_last3_negative_cases(list, Kth, expected):
+    linked_list = LinkedList(list)
+    with pytest.raises(expected):
+        return_Kth_to_last3(linked_list.head, Kth)

@@ -51,3 +51,26 @@ def return_Kth_to_last2(head: Node, Kth: int) -> int:
         raise ValueError(error_list_boundaries)
 
     return items[list_len - Kth - 1]
+
+
+def return_Kth_to_last3(head: Node, Kth: int) -> int:
+    """
+    Two-pointer solution
+    Time complexity: O(n)
+    Space complexity: O(1)
+    """
+    p1 = head
+    for i in range(Kth + 1):
+        if p1 is None:
+            raise ValueError(error_list_boundaries)
+        p1 = p1.next
+
+    p2 = head
+    while p1:
+        p1 = p1.next
+        p2 = p2.next
+
+    if p2 is None:
+        raise ValueError(error_empty_list)
+
+    return p2.data
