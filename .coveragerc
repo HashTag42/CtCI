@@ -1,3 +1,4 @@
 [run]
 omit =
-    C:/Users/ceege/Code/GitHub/HashTag42/CtCI/2.1 Remove Dups/LinkedList.py
+    2.1 Remove Dups/LinkedList.py
+    2.3 Delete Middle Node/LinkedList.py
