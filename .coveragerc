@@ -2,3 +2,4 @@
 omit =
     2.1 Remove Dups/LinkedList.py
     2.3 Delete Middle Node/LinkedList.py
+    2.4 Partition/LinkedList.py
