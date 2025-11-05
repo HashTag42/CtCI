@@ -26,12 +26,13 @@ def sum_lists(list1: LinkedList, list2: LinkedList) -> LinkedList:
 
 def get_val_from_reversed_ll(linked_list: LinkedList) -> int:
     current = linked_list.head
-    str_val = ""
+    val = 0
+    x = 0
     while current:
-        str_val += str(current.data)
+        val += current.data * (10 ** x)
+        x += 1
         current = current.next
-    rev_str_val = str_val[::-1]
-    return int(rev_str_val)
+    return val
 
 
 def get_reversed_ll_from_val(val: int) -> LinkedList:
