@@ -20,10 +20,8 @@ from LinkedList import LinkedList
 
 
 def sum_lists(list1: LinkedList, list2: LinkedList) -> LinkedList:
-    val1 = get_val_from_reversed_ll(list1)
-    val2 = get_val_from_reversed_ll(list2)
-    sum = val1 + val2
-    return get_reversed_ll_from_val(sum)
+    return get_reversed_ll_from_val(get_val_from_reversed_ll(list1) +
+                                    get_val_from_reversed_ll(list2))
 
 
 def get_val_from_reversed_ll(linked_list: LinkedList) -> int:
