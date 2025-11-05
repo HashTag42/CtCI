@@ -12,7 +12,7 @@ Input:  3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1 [partition = 5]
 Output: 3 -> 1 -> 2       ->        10 -> 5 -> 5 -> 8"
 '''
 from typing import List
-from LinkedList import LinkedList
+from LinkedList import LinkedList, Node
 
 
 def partition_list(linked_list: List[int], partition) -> List[int]:
@@ -27,10 +27,21 @@ def partition_list(linked_list: List[int], partition) -> List[int]:
             list_right.append(current.data)
         current = current.next
 
-    ll.clear()
-    for i in list_left:
-        ll.append(i)
-    for i in list_right:
-        ll.append(i)
+    def append(linked_list: LinkedList, data: int) -> None:
+        new_node = Node(data)
+        if linked_list.head:
+            current = linked_list.head
+            while current.next:
+                current = current.next
+            current.next = new_node
+        else:
+            linked_list.head = new_node
+
+    ll.head = None
+    current = ll.head
+    for val in list_left:
+        append(ll, val)
+    for val in list_right:
+        append(ll, val)
 
     return ll
