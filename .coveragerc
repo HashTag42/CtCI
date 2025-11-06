@@ -5,3 +5,4 @@ omit =
     2.4 Partition/LinkedList.py
     2.5 Sum Lists/LinkedList.py
     2.6 Palindrome/LinkedList.py
+    2.7 Intersection/LinkedList.py
