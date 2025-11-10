@@ -11,8 +11,9 @@ from LinkedList import LinkedList, Node
 
 
 def intersection(ll1: LinkedList, ll2: LinkedList) -> Node:
-    for n1 in ll1:
-        for n2 in ll2:
-            if n1 == n2:
-                return n1
+    l1, l2 = ll1.to_list(), ll2.to_list()
+    for i1 in range(len(l1)):
+        for i2 in range(len(l2)):
+            if l1[i1:] == l2[i2:]:
+                return l1[i1]
     return None
