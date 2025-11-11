@@ -1,25 +1,64 @@
-from intersection import intersection
 from LinkedList import LinkedList
-import pytest
-
-intersection_cases = [
-    # list1, list2, expected
-    # Positive cases
-    ([1], [1], 1),
-    ([1, 9], [2, 9], 9),
-    ([1, 9, 3], [2, 9, 3], 9),
-    ([1, 9, 2], [3, 4, 9, 2], 9),
-    ([3, 1, 5, 9, 7, 2, 1], [4, 9, 6, 7, 2, 1], 7),
-    # Negative cases
-    ([], [], None),
-    ([1], [2], None),
-    ([1], [1, 2], None),
-    ([1, 9, 3], [2, 9, 3, 4], None),
-]
+from intersection import intersection
 
 
-@pytest.mark.parametrize("list1, list2, expected", intersection_cases)
-def test_intersection(list1, list2, expected):
-    actual = intersection(LinkedList(list1).head, LinkedList(list2).head)
-    actual = actual.data if actual else None
-    assert actual == expected
+def test_no_intersection():
+    head1 = LinkedList([1, 2, 3]).head
+    head2 = LinkedList([4, 5, 6]).head
+    assert intersection(head1, head2) is None
+
+
+def test_intersection_at_middle_len1_greater_than_len2():
+    # Shared tail
+    shared = LinkedList([7, 8, 9]).head
+    head1 = LinkedList([1, 2, 3]).head
+    head2 = LinkedList([4, 5]).head
+
+    # Attach shared tail
+    cur = head1
+    while cur.next:
+        cur = cur.next
+    cur.next = shared
+
+    cur = head2
+    while cur.next:
+        cur = cur.next
+    cur.next = shared
+
+    # Intersection should be the first shared node
+    result = intersection(head1, head2)
+    assert result is shared
+
+
+def test_intersection_at_middle2_len2_greater_than_len1():
+    # Shared tail
+    shared = LinkedList([7, 8, 9]).head
+    head1 = LinkedList([1, 2]).head
+    head2 = LinkedList([4, 5, 6]).head
+
+    # Attach shared tail
+    cur = head1
+    while cur.next:
+        cur = cur.next
+    cur.next = shared
+
+    cur = head2
+    while cur.next:
+        cur = cur.next
+    cur.next = shared
+
+    # Intersection should be the first shared node
+    result = intersection(head1, head2)
+    assert result is shared
+
+
+def test_intersection_at_head():
+    # Both lists are literally the same list
+    head = LinkedList([1, 2, 3]).head
+    assert intersection(head, head) is head
+
+
+def test_empty_lists():
+    assert intersection(None, None) is None
+    assert intersection(LinkedList([1, 2]).head, None) is None
+    assert intersection(None, LinkedList([3, 4]).head) is None

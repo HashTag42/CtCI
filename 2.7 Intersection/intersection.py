@@ -7,32 +7,34 @@ Given two (singly) linked lists, determine if the two lists intersect. Return th
 intersection is defined based on reference, not value. That is, if the kth element of the first linked list is the exact
 same node (by reference) as the jth node of the second linked list, then they are intersecting.
 '''
-from LinkedList import Node
 from typing import Optional
+from LinkedList import Node
+
+
+def get_length(head: Optional[Node]) -> int:
+    length = 0
+    current = head
+    while current:
+        length += 1
+        current = current.next
+    return length
 
 
 def intersection(head1: Optional[Node], head2: Optional[Node]) -> Optional[Node]:
-    cur1 = head1
-    while cur1:
-        cur2 = head2
-        while cur2:
-            if cur1.data == cur2.data:
-                if areListsEqual(cur1, cur2):
-                    return cur1
+    """Return the intersecting node if two lists share a node by reference."""
+    """Complexity: Time: O(n+m), Space: O(1)"""
+    if not head1 or not head2:
+        return None
+    len1, len2 = get_length(head1), get_length(head2)
+    cur1, cur2 = head1, head2
+    if len1 > len2:
+        for _ in range(len1 - len2):
+            cur1 = cur1.next
+    else:
+        for _ in range(len2 - len1):
             cur2 = cur2.next
-        cur1 = cur1.next
-    return None
-
-
-def areListsEqual(node1: Optional[Node], node2: Optional[Node]) -> bool:
-    """
-    Checks if two linked lists are identical.
-    Time Complexity: O(n)
-    Space Complexity: O(1)
-    """
-    cur1, cur2 = node1, node2
     while cur1 and cur2:
-        if cur1.data != cur2.data:
-            return False
+        if cur1 is cur2:
+            return cur1
         cur1, cur2 = cur1.next, cur2.next
-    return cur1 is None and cur2 is None
+    return None
