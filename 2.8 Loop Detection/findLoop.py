@@ -16,13 +16,23 @@ from LinkedList import Node
 
 
 def findLoop(head: Optional[Node]) -> Optional[Node]:
-    """Return the node at the start of the loop if one exists, else None."""
-    """Complexity: Time: O(n), Space: O(n)"""
-    nodes = set()
-    current = head
-    while current:
-        if current in nodes:
-            return current
-        nodes.add(current)
-        current = current.next
-    return None
+    """Return the node at the start of the loop if one exists, else None.
+    Uses Floyd's cycle detection algorithm (O(1) space).
+    Complexity: Time: O(n), Space: O(1)"""
+    slow = fast = head
+    # Step 1: Detect cycle
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow is fast:
+            break
+    else:
+        return None
+
+    # Step 2: Find start of loop
+    slow = head
+    while slow is not fast:
+        slow = slow.next
+        fast = fast.next
+    return slow
+
