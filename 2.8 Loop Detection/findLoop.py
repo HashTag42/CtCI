@@ -16,7 +16,8 @@ from LinkedList import Node
 
 
 def findLoop(head: Optional[Node]) -> Optional[Node]:
-    """"""
+    """Return the node at the start of the loop if one exists, else None."""
+    """Complexity: Time: O(n), Space: O(n)"""
     nodes = set()
     current = head
     while current:
