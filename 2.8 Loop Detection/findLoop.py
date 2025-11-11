@@ -35,4 +35,3 @@ def findLoop(head: Optional[Node]) -> Optional[Node]:
         slow = slow.next
         fast = fast.next
     return slow
-
