@@ -2,6 +2,7 @@
   "python.testing.pytestArgs": [
     ".",  // or your test folder
     "--cov=.",
+    "--cov-branch",
     "--cov-report=term-missing",
     "--cov-config=.coveragerc"
   ],
