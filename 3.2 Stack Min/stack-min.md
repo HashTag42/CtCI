@@ -1,0 +1,13 @@
+# [Cracking the Coding Interview - 6th Edition](https://www.crackingthecodinginterview.com/)
+
+## Question 3.2 Stack Min
+
+How would you design a stack, which, in addition to `push` and `pop`, has a function `min` which returns the minimum
+element? `Push`, `pop`, `min` should all operate in O(1) time.
+
+## Answer
+
+The solution has been implemented in [Stack.py](https://github.com/HashTag42/Python/blob/master/Python101/Stack.py)
+with commit [471cc7c](https://github.com/HashTag42/Python/commit/471cc7c588a06de6a8a33172d62c08d4eac8f638).
+
+The `push`, `pop`, and `min` methods all operate in O(1) time.
