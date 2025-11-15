@@ -14,21 +14,20 @@ def return_Kth_to_last1(linked_list: LinkedList, Kth: int) -> int:
     Time complexity: O(2*n) = O(n)
     Space complexity: O(1)
     """
+    if linked_list is None:
+        raise ValueError(error_empty_list)
     list_len = len(linked_list)
     if list_len == 0:
         raise ValueError(error_empty_list)
     if Kth < 0 or list_len <= Kth:
         raise ValueError(error_list_boundaries)
-
     target = list_len - Kth - 1
-
     count = 0
     current = linked_list.head
-    while current:
-        if count == target:
-            return current.data
+    while current and count < target:
         count += 1
         current = current.next
+    return current.data
 
 
 def return_Kth_to_last2(head: Node, Kth: int) -> int:

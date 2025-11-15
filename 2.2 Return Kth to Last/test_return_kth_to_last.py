@@ -1,4 +1,4 @@
-from return_kth_to_last import return_Kth_to_last1, return_Kth_to_last2, return_Kth_to_last3
+from return_kth_to_last import return_Kth_to_last1, return_Kth_to_last2, return_Kth_to_last3, error_empty_list
 from LinkedList import LinkedList
 import pytest
 
@@ -34,6 +34,12 @@ def test_return_Kth_to_last1_negative_cases(list, Kth, expected):
         return_Kth_to_last1(linked_list, Kth)
 
 
+# Additional test for return_Kth_to_last1 with None head
+def test_return_Kth_to_last1_none_head():
+    with pytest.raises(ValueError, match=error_empty_list):
+        return_Kth_to_last1(None, 0)
+
+
 # return_Kth_to_last2
 @pytest.mark.parametrize("list, Kth, expected", positive_cases)
 def test_return_Kth_to_last2_positive_cases(list, Kth, expected):
@@ -46,6 +52,12 @@ def test_return_Kth_to_last2_negative_cases(list, Kth, expected):
     linked_list = LinkedList(list)
     with pytest.raises(expected):
         return_Kth_to_last2(linked_list.head, Kth)
+
+
+# Additional test for return_Kth_to_last2 with None head
+def test_return_Kth_to_last2_none_head():
+    with pytest.raises(ValueError, match=error_empty_list):
+        return_Kth_to_last2(None, 0)
 
 
 # return_Kth_to_last3
