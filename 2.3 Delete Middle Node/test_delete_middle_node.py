@@ -6,6 +6,7 @@ import pytest
 cases = [
     # nodes, value, expected
     ([1, 2, 3], 2, [1, 3]),
+    ([1, 2, 3], None, [1, 2, 3]),
     (["a", "b", "c", "d", "e", "f"], "c", ["a", "b", "d", "e", "f"]),
 ]
 
@@ -21,3 +22,12 @@ def test_delete_middle_node(nodes, value, expected):
         current = current.next
 
     delete_middle_node(current)
+
+    # Add assertion to verify the result
+    result = []
+    current = ll.head
+    while current:
+        result.append(current.data)
+        current = current.next
+
+    assert result == expected

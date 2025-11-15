@@ -11,12 +11,9 @@ from LinkedList import Node
 
 
 def delete_middle_node(node: Node) -> None:
-    previous = node
-    current = node
-    while current:
-        previous.data = current.data
-        if current.next is None:
-            previous.next = None
-            break
-        previous = current
-        current = current.next
+    if node is None or node.next is None:
+        return
+
+    next_node = node.next
+    node.data = next_node.data
+    node.next = next_node.next
