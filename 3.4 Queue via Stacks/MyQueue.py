@@ -28,10 +28,16 @@ class MyQueue(Generic[T]):
         self._stacks[self._active].push(data)
 
     def is_empty(self) -> bool:
+        """Return True if and only if the queue is empty"""
         return self._stacks[self._active].is_empty()
 
     def peek(self) -> T:
-        return self._stacks[self._active].peek()
+        """Return the first item in the queue. Return None if the queue is empty"""
+        if len(self) == 0:
+            return None
+        items = list(self._stacks[self._active])
+        items.reverse()
+        return items[0]
 
     def remove(self) -> T:
         """Remove and return the first item in the queue. Return None if the queue is empty"""
