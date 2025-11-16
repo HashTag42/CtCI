@@ -9,6 +9,8 @@ from Stack import Stack
 from typing import Generic, TypeVar
 T = TypeVar("T")
 
+ERROR_EMPTY_QUEUE = "Queue is empty"
+
 
 class MyQueue(Generic[T]):
     ################################################################################
@@ -34,7 +36,7 @@ class MyQueue(Generic[T]):
     def peek(self) -> T:
         """Return the first item in the queue. Return None if the queue is empty"""
         if len(self) == 0:
-            return None
+            raise IndexError(ERROR_EMPTY_QUEUE)
         items = list(self._stacks[self._active])
         items.reverse()
         return items[0]
@@ -42,7 +44,7 @@ class MyQueue(Generic[T]):
     def remove(self) -> T:
         """Remove and return the first item in the queue. Return None if the queue is empty"""
         if len(self) == 0:
-            return None
+            raise IndexError(ERROR_EMPTY_QUEUE)
         items = list(self._stacks[self._active])
         items.reverse()
         data = items[0]

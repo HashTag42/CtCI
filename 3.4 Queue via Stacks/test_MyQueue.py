@@ -1,4 +1,5 @@
-from MyQueue import MyQueue
+from MyQueue import MyQueue, ERROR_EMPTY_QUEUE
+import pytest
 
 
 ################################################################################
@@ -36,16 +37,22 @@ def test_MyQueue_is_empty():
 
 
 ################################################################################
-# region MyQueue.peek() -> T
+# region MyQueue.peek() -> data
 def test_MyQueue_peek():
     mq = MyQueue()
-    assert mq.peek() is None
     mq.add(1)
     assert mq.peek() == 1
+    mq.add(2)
+    assert mq.peek() == 1
     mq.remove()
-    assert mq.peek() is None
-    mq.add("A")
-    assert mq.peek() == "A"
+    assert mq.peek() == 2
+
+
+def test_MyQueue_peek_raises():
+    mq = MyQueue()
+    with pytest.raises(IndexError) as exc_info:
+        mq.peek()
+    assert str(exc_info.value) == ERROR_EMPTY_QUEUE
 # endregion
 ################################################################################
 
@@ -63,8 +70,13 @@ def test_MyQueue_remove():
     assert repr(mq) == "MyQueue([3])"
     assert mq.remove() == 3
     assert repr(mq) == "MyQueue([])"
-    assert mq.remove() is None
-    assert repr(mq) == "MyQueue([])"
+
+
+def test_MyQueue_remove_raises():
+    mq = MyQueue()
+    with pytest.raises(IndexError) as exc_info:
+        mq.remove()
+    assert str(exc_info.value) == ERROR_EMPTY_QUEUE
 # endregion
 ################################################################################
 
@@ -76,7 +88,8 @@ def test_MyQueue_multiple_operations():
     mq = MyQueue()
     assert isinstance(mq, MyQueue)
     assert mq.is_empty() is True
-    assert mq.peek() is None
+    with pytest.raises(IndexError):
+        mq.peek()
     assert len(mq) == 0
     assert repr(mq) == "MyQueue([])"
     # add an item to the queue
@@ -111,13 +124,16 @@ def test_MyQueue_multiple_operations():
     assert repr(mq) == "MyQueue([3])"
     # empty the queue
     assert mq.remove() == 3
-    assert mq.peek() is None
+    with pytest.raises(IndexError):
+        mq.peek()
     assert mq.is_empty() is True
     assert len(mq) == 0
     assert repr(mq) == "MyQueue([])"
     # empty an empty queue
-    assert mq.remove() is None
-    assert mq.peek() is None
+    with pytest.raises(IndexError):
+        mq.remove()
+    with pytest.raises(IndexError):
+        mq.peek()
     assert mq.is_empty() is True
     assert len(mq) == 0
     assert repr(mq) == "MyQueue([])"
@@ -131,7 +147,8 @@ def test_MyQueue_multiple_operations():
     assert repr(mq) == "MyQueue([5])"
     assert mq.remove() == 5
     assert repr(mq) == "MyQueue([])"
-    assert mq.remove() is None
+    with pytest.raises(IndexError):
+        mq.remove()
     assert repr(mq) == "MyQueue([])"
 # endregion
 ################################################################################
