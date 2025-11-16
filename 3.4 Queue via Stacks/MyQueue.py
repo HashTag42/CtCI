@@ -27,6 +27,12 @@ class MyQueue(Generic[T]):
         """Add an item to the end of the queue"""
         self._stacks[self._active].push(data)
 
+    def is_empty(self) -> bool:
+        return self._stacks[self._active].is_empty()
+
+    def peek(self) -> T:
+        return self._stacks[self._active].peek()
+
     def remove(self) -> T:
         """Remove and return the first item in the queue. Return None if the queue is empty"""
         if len(self) == 0:
