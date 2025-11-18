@@ -21,9 +21,11 @@ class SmallStack(Stack, Generic[T]):
     # region CONSTRUCTOR
     def __init__(self, nodes: Optional[List[T]] = None) -> None:
         """Initializes a SmallStack object. Optionally populates it with a list of items."""
-        super().__init__(nodes)
+        super().__init__()
+        if nodes:
+            for val in nodes:
+                super().push(val)
         self._sort()
-        self._temp: Stack = Stack()
     # endregion
     ################################################################################
 
@@ -33,13 +35,7 @@ class SmallStack(Stack, Generic[T]):
         super().push(data)
         self._sort()
 
-    def pop(self) -> Optional[T]:
-        super().pop()
-        self._sort()
-
-    # peek() is implemented by the superclass
-
-    # is_empty() is implemented by the superclass
+    # pop(), peek(), and is_empty() are implemented by the superclass
 
     # endregion
     ################################################################################
@@ -48,9 +44,13 @@ class SmallStack(Stack, Generic[T]):
     # region PRIVATE INTERFACE
     def _sort(self):
         """Sort stack items with smallest on top"""
-        values = sorted(list(self), reverse=True)
-        self.clear()
-        for val in values:
-            super().push(val)
-    ################################################################################
+        temp_stack: Stack = Stack()
+        while not self.is_empty():
+            temp_value: T = self.pop()
+            while not temp_stack.is_empty() and temp_stack.peek() > temp_value:
+                super().push(temp_stack.pop())
+            temp_stack.push(temp_value)
+        while not temp_stack.is_empty():
+            super().push(temp_stack.pop())
     # endregion
+    ################################################################################

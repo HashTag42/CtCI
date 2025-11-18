@@ -20,12 +20,16 @@ def test_SmallStack__init__(nodes, expected):
 
 ################################################################################
 # region TEST: SmallStack.push(data) -> None
-@pytest.mark.parametrize("value, expected", [
-    (1, "Stack(->[1])"),
+@pytest.mark.parametrize("values, expected", [
+    ([], "Stack(->[])"),
+    ([1], "Stack(->[1])"),
+    ([1, 2], "Stack(->[1, 2])"),
+    ([2, 1, 5, 4, 3], "Stack(->[1, 2, 3, 4, 5])"),
 ])
-def test_SmallStack_push(value, expected):
+def test_SmallStack_push(values, expected):
     ss = SmallStack()
-    ss.push(value)
+    for val in values:
+        ss.push(val)
     assert str(ss) == expected
 # endregion
 ################################################################################
@@ -43,6 +47,17 @@ def test_SmallStack_pop(nodes, pop_count, expected):
     for _ in range(pop_count):
         ss.pop()
     assert str(ss) == expected
+
+
+@pytest.mark.parametrize("nodes, expected", [
+    ([], None),
+    ([1], 1),
+    ([1, 2], 1),
+    ([2, 1, 5, 4, 3], 1),
+])
+def test_SmallStack_pop_value(nodes, expected):
+    ss = SmallStack(nodes)
+    assert ss.pop() == expected
 # endregion
 ################################################################################
 
@@ -52,6 +67,8 @@ def test_SmallStack_pop(nodes, pop_count, expected):
 @pytest.mark.parametrize("nodes, expected", [
     ([], None),
     ([1], 1),
+    ([1, 2], 1),
+    ([2, 1, 5, 4, 3], 1),
 ])
 def test_SmallStack_peek(nodes, expected):
     ss = SmallStack(nodes)
