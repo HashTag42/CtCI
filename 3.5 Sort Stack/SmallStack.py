@@ -10,13 +10,12 @@ Implementation relies on the Stack class: https://github.com/HashTag42/Python/bl
 '''
 
 from Stack import Stack
-from typing import List, Optional, TypeVar
+from typing import Generic, List, Optional, TypeVar
 T = TypeVar("T")
 
 
-class SmallStack(Stack):
-    """SmallStack is a subclass of Stack"""
-    """SmallStack keeps the items sorted with the smallest items on top"""
+class SmallStack(Stack, Generic[T]):
+    """SmallStack keeps the stack sorted with the smallest items on top"""
 
     ################################################################################
     # region CONSTRUCTOR
@@ -24,6 +23,24 @@ class SmallStack(Stack):
         """Initializes a SmallStack object. Optionally populates it with a list of items."""
         super().__init__(nodes)
         self._sort()
+        self._temp: Stack = Stack()
+    # endregion
+    ################################################################################
+
+    ################################################################################
+    # region PUBLIC INTERFACE
+    def push(self, data: T) -> None:
+        super().push(data)
+        self._sort()
+
+    def pop(self) -> Optional[T]:
+        super().pop()
+        self._sort()
+
+    # peek() is implemented by the superclass
+
+    # is_empty() is implemented by the superclass
+
     # endregion
     ################################################################################
 
@@ -34,6 +51,6 @@ class SmallStack(Stack):
         values = sorted(list(self), reverse=True)
         self.clear()
         for val in values:
-            self.push(val)
+            super().push(val)
     ################################################################################
     # endregion
