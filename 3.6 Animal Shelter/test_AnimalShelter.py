@@ -12,7 +12,7 @@ def test_Animal__init():
 @pytest.mark.parametrize("type, name, expected", [
     (AnimalType.CAT, "Cat1", "(CAT:Cat1)"),
     (AnimalType.DOG, "Dog1", "(DOG:Dog1)"),
-    (3, "Bird1", ""),
+    (None, "Bird1", "(UNKNOWN:Bird1)"),
 ])
 def test_Animal__str__(type, name, expected):
     animal = Animal(type, name)

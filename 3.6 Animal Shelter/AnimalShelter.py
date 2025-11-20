@@ -35,7 +35,7 @@ class Animal():
             case AnimalType.DOG:
                 result += "DOG"
             case _:
-                pass
+                result += "UNKNOWN"
         result += f":{self.name})"
         return result
 
